@@ -1,0 +1,101 @@
+<div class="drawer-body">
+  <div class="row">
+    <div class="col-12 mb-2">
+      <p>Customer</p>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <input
+          name="number"
+          type="text"
+          matInput
+          placeholder="Phone No."
+          [(ngModel)]="number"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <input
+          name="customerName"
+          type="text"
+          matInput
+          placeholder="Customer Name"
+          [(ngModel)]="customerName"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-2">
+      <p>Vehicle</p>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <input
+          name="vehicleNo"
+          type="text"
+          matInput
+          placeholder="Vehicle No."
+          [(ngModel)]="vehicleNo"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <input
+          name="vehicleName"
+          type="text"
+          matInput
+          placeholder="Vehicle Name"
+          [(ngModel)]="vehicleName"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-2">
+      <p>Amount</p>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <input
+          name="cash"
+          type="number"
+          matInput
+          placeholder="Cash"
+          [(ngModel)]="cash"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <input
+          name="upi"
+          type="number"
+          matInput
+          placeholder="UPI"
+          [(ngModel)]="upi"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div class="drawer-footer">
+  <!-- <button
+    [type]="'button'"
+    [role]="'secondary'"
+    (onClick)="actionEvent()"
+    [disabled]="loading"
+    >CANCEL</button
+  > -->
+  <!-- [type]="'button'"
+  [role]="'primary'"
+  (onClick)="actionEvent('save-user')"
+  [disabled]="loading || addUserForm?.invalid" -->
+  <ct-button [role]="'secondary'" (onClick)="actionEvent()">CANCEL</ct-button>
+  <ct-button (onClick)="actionEvent('save-user')">SAVE</ct-button>
+</div>

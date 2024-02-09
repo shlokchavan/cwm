@@ -1,57 +1,11 @@
 <div class="transaction">
-  <h3>New Entry</h3>
-  <hr class="m-1">
-  <section>
-    <p>Customer</p>
-    <input
-      name="number"
-      type="text"
-      pInputText
-      placeholder="Phone No."
-      [(ngModel)]="number"
-    />
-    <input
-      name="customerName"
-      type="text"
-      pInputText
-      placeholder="Customer Name"
-      [(ngModel)]="customerName"
-    />
-  </section>
-  <br />
-  <section>
-    <p>Vehicle</p>
-    <input
-      name="vehicleNo"
-      type="text"
-      pInputText
-      placeholder="Vehicle No."
-      [(ngModel)]="vehicleNo"
-    />
-    <input
-      name="vehicleName"
-      type="text"
-      pInputText
-      placeholder="Vehicle Name"
-      [(ngModel)]="vehicleName"
-    />
-  </section>
-  <br />
-  <section>
-    <p>Transaction</p>
-    <input
-      name="amount"
-      type="text"
-      pInputText
-      placeholder="Amount"
-      [(ngModel)]="amount"
-    />
-    <input
-      name="modeOfPayment"
-      type="text"
-      pInputText
-      placeholder="Payment Mode"
-      [(ngModel)]="modeOfPayment"
-    />
-  </section>
+  <ct-button (click)="openDrawer('add-transaction')">New Transaction +</ct-button>
+
+  <table [rows]="data" [cols]="cols" [height]="tableHeight"></table>
+  <ng-template #drawerTemplate>
+    <add-transaction
+      *ngIf="pageComponentVisibility?.addTransaction"
+      (onBtnClick)="drawerAction($event)"
+    ></add-transaction>
+  </ng-template>
 </div>

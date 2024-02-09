@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { HeaderComponent } from './layout/header/header.component';
+import { NavigationLayoutComponent } from './core/layouts/NavigationLayout/navigation.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: '/transaction',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'transaction',
-    // component: HeaderComponent,
+    component: NavigationLayoutComponent,
     loadChildren: () =>
       import('./modules/transaction/transaction.module').then(
         (m) => m.TransactionModule

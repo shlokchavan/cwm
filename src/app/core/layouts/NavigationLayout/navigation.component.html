@@ -1,0 +1,25 @@
+<drawer-panel
+  [footerTemplate]="drawerPanelConfig.footerTemplate"
+  [useCustomTemplate]="drawerPanelConfig.useCustomTemplate"
+  [showCloseButton]="drawerPanelConfig.showCloseButton"
+  [drawerTitle]="drawerPanelConfig.drawerTitle"
+  [drawerContainer]="drawerPanelConfig.drawerContainer"
+  [isActive]="drawerPanelConfig.isActive"
+  [isRightSide]="drawerPanelConfig.isRightSide"
+  [hasBackdrop]="drawerPanelConfig.hasBackdrop"
+  [escClose]="true"
+  [drawerMode]="drawerPanelConfig.drawerMode"
+  [drawerSize]="drawerPanelConfig.drawerSize"
+  #drawer
+>
+  <mat-toolbar>
+    <span>{{appName}}</span>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+
+  <!-- (isActiveChange)="drawerTest($event)" -->
+</drawer-panel>
+
+<!-- Loading Overlay -->
+<!-- <div class="loadingOverlay" *ngIf="loading">
+</div> -->
