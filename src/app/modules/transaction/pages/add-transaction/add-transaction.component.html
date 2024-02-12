@@ -1,27 +1,29 @@
+<!-- <form (ngSubmit)="actionEvent('save')" #transactionForm="ngForm"> -->
 <div class="drawer-body">
   <div class="row">
     <div class="col-12 mb-2">
       <p>Customer</p>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
       <mat-form-field class="w-100">
         <input
           name="number"
           type="text"
           matInput
           placeholder="Phone No."
-          [(ngModel)]="number"
+          [(ngModel)]="transaction.phone"
         />
       </mat-form-field>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
       <mat-form-field class="w-100">
         <input
           name="customerName"
           type="text"
           matInput
+          capitalizeFirst
           placeholder="Customer Name"
-          [(ngModel)]="customerName"
+          [(ngModel)]="transaction.customer_name"
         />
       </mat-form-field>
     </div>
@@ -31,26 +33,28 @@
     <div class="col-12 mb-2">
       <p>Vehicle</p>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
       <mat-form-field class="w-100">
         <input
           name="vehicleNo"
           type="text"
           matInput
+          capitalize
           placeholder="Vehicle No."
-          [(ngModel)]="vehicleNo"
+          [(ngModel)]="transaction.vehicle_no"
         />
       </mat-form-field>
     </div>
 
-    <div class="col-6">
+    <div class="col-md-6">
       <mat-form-field class="w-100">
         <input
           name="vehicleName"
           type="text"
           matInput
+          capitalizeFirst
           placeholder="Vehicle Name"
-          [(ngModel)]="vehicleName"
+          [(ngModel)]="transaction.vehicle_name"
         />
       </mat-form-field>
     </div>
@@ -58,7 +62,7 @@
 
   <div class="row">
     <div class="col-12 mb-2">
-      <p>Amount</p>
+      <p>Amount (₹)</p>
     </div>
     <div class="col-6">
       <mat-form-field class="w-100">
@@ -67,7 +71,7 @@
           type="number"
           matInput
           placeholder="Cash"
-          [(ngModel)]="cash"
+          [(ngModel)]="transaction.cash"
         />
       </mat-form-field>
     </div>
@@ -78,24 +82,17 @@
           type="number"
           matInput
           placeholder="UPI"
-          [(ngModel)]="upi"
+          [(ngModel)]="transaction.upi"
         />
       </mat-form-field>
     </div>
   </div>
 </div>
-<div class="drawer-footer">
-  <!-- <button
-    [type]="'button'"
-    [role]="'secondary'"
-    (onClick)="actionEvent()"
-    [disabled]="loading"
-    >CANCEL</button
-  > -->
-  <!-- [type]="'button'"
-  [role]="'primary'"
-  (onClick)="actionEvent('save-user')"
-  [disabled]="loading || addUserForm?.invalid" -->
+<div class="drawer-footer rightAlignButtons">
   <ct-button [role]="'secondary'" (onClick)="actionEvent()">CANCEL</ct-button>
-  <ct-button (onClick)="actionEvent('save-user')">SAVE</ct-button>
+  <!-- [disabled]="
+      !transactionForm.valid && (!transaction.cash || !transaction.upi)
+    " -->
+  <ct-button>SAVE</ct-button>
 </div>
+<!-- </form> -->

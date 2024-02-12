@@ -1,7 +1,29 @@
 <div class="transaction">
-  <ct-button (click)="openDrawer('add-transaction')">New Transaction +</ct-button>
+  <div class="row title my-3 px-4">
+    <h4>Transaction Details</h4>
+    <div class="stats">
+      <!-- <span>Total Sales: </span> -->
+      <div class="stats-card">
+        {{ "Total: " }}
+        <span class="total-sales ml-1">
+          {{ totalSales | currency : "INR" }}
+        </span>
+      </div>
+    </div>
+  </div>
 
-  <table [rows]="data" [cols]="cols" [height]="tableHeight"></table>
+  <ng-template #gridHeaderTemplate>
+    <ct-button (click)="openDrawer('add-transaction')" class="m-sm-auto"
+      >New Transaction +</ct-button
+    >
+  </ng-template>
+
+  <table
+    [gridHeader]="gridHeaderTemplate"
+    [rows]="data"
+    [cols]="cols"
+    [height]="tableHeight"
+  ></table>
   <ng-template #drawerTemplate>
     <add-transaction
       *ngIf="pageComponentVisibility?.addTransaction"

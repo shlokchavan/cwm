@@ -1,6 +1,8 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
 import { DrawerPanelService } from '../../shared/components/drawer-panel/drawer.service';
 import { TransactionConfig } from '../../configs/transaction/transaction.config';
+import { TransactionService } from '../../shared/services/transaction.service';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
 @Component({
   selector: 'transaction',
@@ -8,6 +10,7 @@ import { TransactionConfig } from '../../configs/transaction/transaction.config'
   styleUrl: './transaction.component.scss',
 })
 export class TransactionComponent {
+  // Variables
   @ViewChild('drawerTemplate') drawerTemplate!: TemplateRef<any>;
 
   pageComponentVisibility: any = {
@@ -16,232 +19,18 @@ export class TransactionComponent {
   data: any[] = [];
   cols: any[] = [];
   tableHeight!: string;
+  firestore = inject(Firestore);
+  totalSales: number = 0;
 
-  constructor(private drawerControllerService: DrawerPanelService) {}
+  constructor(
+    private drawerControllerService: DrawerPanelService,
+    private transactionService: TransactionService
+  ) {}
 
   ngOnInit() {
     this.cols = new TransactionConfig().colDefs;
-
-    this.data = [
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-      {
-        phone: '8356047973',
-        customerName: 'Shlok',
-        vehicleNo: 'MH04EQ2282',
-        vehicleName: 'Fiesta',
-        cash: 0,
-        upi: 300,
-        creationDate: '2023-02-09'
-      },
-    ];
-
     this.tableHeight = 'calc(100vh - 8rem)';
+    this.getAllTransactions();
   }
 
   openDrawer(drawerCase: string) {
@@ -273,14 +62,31 @@ export class TransactionComponent {
   }
 
   drawerAction(event: any) {
+    this.clearDrawerData();
     switch (event.event) {
-      case 'save-transaction':
+      case 'save':
         // Save API Call
         // this.saveUser(event.data); // Data == User
+        this.getAllTransactions();
         break;
       default:
         this.clearDrawerData();
         break;
     }
+  }
+
+  async getAllTransactions() {
+    // MONGO
+    // this.transactionService.getAllTransactions().subscribe((res: any) => {
+    //   console.log(res);
+    // });
+    const querySnapshot = await getDocs(
+      collection(this.firestore, 'transaction')
+    );
+
+    this.data = querySnapshot.docs.map((doc) => doc.data());
+    this.totalSales = this.data
+      .map((row: any) => Number(row['cash'] || 0) + Number(row['upi'] || 0))
+      .reduce((acc: number, currentValue: number) => acc + currentValue, 0);
   }
 }

@@ -11,11 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ButtonComponent {
   @Input() role!: string;
+  @Input() type!: string;
   @Input() disabled!: boolean;
   @Output() onClick: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.role = 'primary';
+    this.type = 'submit' || 'button';
     this.disabled = false;
   }
 

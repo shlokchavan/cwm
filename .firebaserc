@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cwm-tech": {
+      "hosting": {
+        "car-wash-manager": [
+          "cwm-tech"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cwm-tech"
+  }
+}

@@ -1,3 +1,47 @@
 .transaction {
-    padding: 1rem;
+  padding: 1rem;
+}
+
+.title {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stats-card {
+  min-width: 6rem;
+  height: 100%;
+  display: block;
+  background: #f0f0f0;
+  text-align: center;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.total-sales {
+  font-weight: 500;
+}
+
+:host::ng-deep {
+  .p-datatable-header .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  ct-button.m-sm-auto {
+    margin: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  ct-button.m-sm-auto {
+    margin: 0 !important; /* Reset margin on larger screens */
+  }
 }

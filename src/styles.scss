@@ -8,7 +8,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+table {
+    width: 100%;
+}
 
-.m-1 {
-    margin-block: 1rem;
+input {
+  text-transform: capitalize;
 }

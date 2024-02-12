@@ -1,10 +1,12 @@
 <div class="card">
   <!-- [tableStyle]="{ 'min-width': '50rem' }" -->
   <p-table
+    #dt
     [columns]="cols"
     [value]="rows"
-    responsiveLayout="scroll"
-    [breakpoint]="'960px'"
+    responsiveLayout="stack"
+    styleClass="p-datatable-striped"
+    [breakpoint]="'425px'"
     [scrollable]="true"
     [scrollHeight]="height"
     [paginator]="true"
@@ -12,7 +14,23 @@
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[5, 10, 20]"
+    [globalFilterFields]="filterFields"
   >
+    <ng-template pTemplate="caption">
+      <div class="row">
+        <div class="col-sm-4 col-md-6">
+          <mat-form-field class="w-100">
+            <input
+              matInput
+              type="text"
+              (input)="filterTable($event)"
+              placeholder="Search..."
+            />
+          </mat-form-field>
+        </div>
+        <ng-container *ngTemplateOutlet="gridHeader"></ng-container>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th *ngFor="let col of columns">
@@ -23,23 +41,22 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td *ngFor="let col of columns">
-          {{ rowData[col.field] }}
+          <ng-container [ngSwitch]="col?.type">
+            <span class="p-column-title">{{ col.header || col.field }}</span>
+            <ng-container *ngSwitchDefault>
+              {{ rowData[col.field] || "-" }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'datetime'" class="p-column-title">
+              {{ convertDateTime(rowData[col?.field]) }}</ng-container
+            >
+            <ng-container *ngSwitchCase="'amount'" class="p-column-title">
+              {{
+                (rowData[col?.field] | currency : "INR") || "-"
+              }}</ng-container
+            >
+          </ng-container>
         </td>
       </tr>
-    </ng-template>
-    <ng-template pTemplate="paginatorleft">
-      <p-button
-        type="button"
-        icon="pi pi-plus"
-        styleClass="p-button-text"
-      ></p-button>
-    </ng-template>
-    <ng-template pTemplate="paginatorright">
-      <p-button
-        type="button"
-        icon="pi pi-cloud"
-        styleClass="p-button-text"
-      ></p-button>
     </ng-template>
   </p-table>
 </div>

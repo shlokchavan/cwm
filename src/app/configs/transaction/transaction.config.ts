@@ -5,28 +5,31 @@ export class TransactionConfig {
       header: 'Phone',
     },
     {
-      field: 'customerName',
+      field: 'customer_name',
       header: 'Customer Name',
     },
     {
-      field: 'vehicleNo',
+      field: 'vehicle_no',
       header: 'Vehicle No.',
     },
     {
-      field: 'vehicleName',
+      field: 'vehicle_name',
       header: 'Vehicle Name',
     },
     {
       field: 'cash',
       header: 'Cash',
+      type: 'amount',
     },
     {
       field: 'upi',
       header: 'UPI',
+      type: 'amount',
     },
     {
-      field: 'creationDate',
+      field: 'created_at',
       header: 'Date',
+      type: 'datetime',
     },
   ];
 }

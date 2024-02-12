@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "car-wash-manager",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
