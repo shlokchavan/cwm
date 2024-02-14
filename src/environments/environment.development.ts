@@ -1,11 +1,12 @@
 export const environment = {
   firebaseConfig: {
-    apiKey: 'AIzaSyCFtYTjCYrvMT-Y5GfdabXNQ0dMO1dZTYg',
-    authDomain: 'cwm-tech.firebaseapp.com',
-    databaseURL: 'https://cwm-tech-default-rtdb.firebaseio.com',
-    projectId: 'cwm-tech',
-    storageBucket: 'cwm-tech.appspot.com',
-    messagingSenderId: '1052523082345',
-    appId: '1:1052523082345:web:42e6cc407ae9d38ee5a8f8',
+    apiKey: 'AIzaSyDmxV-yNYxtHH22UBsr35Dr1ljSB6XWI4E',
+    authDomain: 'the-cwm-tech.firebaseapp.com',
+    projectId: 'the-cwm-tech',
+    storageBucket: 'the-cwm-tech.appspot.com',
+    messagingSenderId: '1002997779972',
+    appId: '1:1002997779972:web:c45fdafeab23d7a087ef51',
   },
+  defaultCountryPhonePrefix: '+91',
+  tenantName: 'Rajput Service Center',
 };

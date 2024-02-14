@@ -1,3 +1,10 @@
-<button mat-flat-button [color]="role" [type]="type" [disabled]="disabled" (click)="handleClick($event)">
+<button
+  mat-flat-button
+  [color]="role"
+  [type]="type"
+  [disabled]="disabled"
+  [style.color]="color"
+  (click)="handleClick($event)"
+>
   <ng-content></ng-content>
 </button>

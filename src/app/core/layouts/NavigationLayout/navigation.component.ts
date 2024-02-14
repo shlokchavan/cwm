@@ -10,14 +10,25 @@ import { DrawerPanelCONFIG } from '../../../configs/drawer-config';
 import { DrawerPanelComponent } from '../../../shared/components/drawer-panel/drawer-panel.component';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { AuthService } from '../../../modules/auth/auth.service';
+import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'navigation-layout',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  providers: [Location, DrawerPanelService],
+  providers: [Location, DrawerPanelService, AuthService],
   standalone: true,
-  imports: [DrawerPanelComponent, CommonModule, RouterModule, MatToolbarModule],
+  imports: [
+    DrawerPanelComponent,
+    CommonModule,
+    RouterModule,
+    MatToolbarModule,
+    MatIconModule,
+    ButtonComponent,
+  ],
 })
 export class NavigationLayoutComponent implements OnInit {
   appName!: string;
@@ -39,10 +50,13 @@ export class NavigationLayoutComponent implements OnInit {
   drawerPanelConfig = new DrawerPanelCONFIG();
   loading = false;
 
-  constructor(private draweControllerService: DrawerPanelService) {}
+  constructor(
+    private draweControllerService: DrawerPanelService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.appName = 'Rajput Service Center'
+    this.appName = environment.tenantName;
     this.setupDrawerControllers();
   }
 
@@ -88,6 +102,10 @@ export class NavigationLayoutComponent implements OnInit {
     // Escape close feature is set has disabled
     this.drawerPanelConfig.isActive = isActive;
     this.draweControllerService.toggleDrawer(isActive);
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   //Intialize All Config

@@ -1,0 +1,54 @@
+<div class="login container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle *ngIf="!showOTPInput"
+        >Please provide number for OTP</mat-card-subtitle
+      >
+      <mat-card-subtitle *ngIf="showOTPInput"
+        >OTP sent on {{ phoneNumber }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <div class="input-group mt-4" *ngIf="!showOTPInput">
+        <mat-form-field appearance="fill">
+          <mat-label>Mobile Number</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="phoneNumber"
+            id="phoneNumber"
+          />
+        </mat-form-field>
+      </div>
+      <div id="recaptcha-container"></div>
+
+      <div *ngIf="showOTPInput" class="input-group mt-4">
+        <mat-form-field appearance="fill">
+          <mat-label>OTP</mat-label>
+          <input matInput type="text" [(ngModel)]="otp" id="otp" />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="actions mb-2">
+      <ct-button
+        (click)="sendOTP()"
+        *ngIf="!showOTPInput"
+        [disabled]="isLoading || !phoneNumber"
+        >{{ isLoading ? "Please wait..." : "Send OTP" }}</ct-button
+      >
+      <ct-button
+        (click)="verifyOTP()"
+        *ngIf="showOTPInput"
+        [disabled]="isLoading || !otp"
+        >{{ isLoading ? "Please wait..." : "Verify OTP" }}</ct-button
+      >
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="isLoading"
+      ></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

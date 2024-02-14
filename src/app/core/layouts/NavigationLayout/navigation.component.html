@@ -12,8 +12,14 @@
   [drawerSize]="drawerPanelConfig.drawerSize"
   #drawer
 >
-  <mat-toolbar>
-    <span>{{appName}}</span>
+  <mat-toolbar class="toolbar">
+    <span>{{ appName }}</span>
+
+    <a href="#" (click)="onLogout()" class="logout" title="Logout"
+      >
+      <!-- <span class="logout-text">Logout</span> -->
+      <mat-icon class="logout-icon">power_settings_new</mat-icon>
+    </a>
   </mat-toolbar>
   <router-outlet></router-outlet>
 
