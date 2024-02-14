@@ -54,6 +54,7 @@ export class LoginComponent {
         })
         .catch((error) => {
           console.error('Error verifying OTP:', error);
+          alert('Invalid OTP');
           this.isLoading = false;
         });
     }
