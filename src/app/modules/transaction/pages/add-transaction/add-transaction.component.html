@@ -93,6 +93,6 @@
   <!-- [disabled]="
       !transactionForm.valid && (!transaction.cash || !transaction.upi)
     " -->
-  <ct-button>SAVE</ct-button>
+  <ct-button (onClick)="actionEvent('save')">SAVE</ct-button>
 </div>
 <!-- </form> -->
